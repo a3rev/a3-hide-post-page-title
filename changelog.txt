@@ -1,0 +1,8 @@
+*** a3 Hide Post & Page Title Changelog ***
+
+= 1.0.0 - 2021/05/08 =
+* First Release version
+* Created a Github Public Repo
+* Integrated with a3API for auto updates
+* Added to a3 Dashboard, WordPress Plugin menu in the Free section
+* Add to a3 Dashboard Support menu 
