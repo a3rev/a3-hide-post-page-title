@@ -72,18 +72,21 @@ class Main
     public function a3hpt_hptheadinsert()
     {
         if ($this->a3hpt_ishidden())
-        { ?> <!-- Hide Page Title -->
-          <script type="text/javascript">
-			jQuery(document).ready(function($){
-				if( $('<?php echo $this->a3hpt_selector; ?>').length != 0 ) {
-					$('<?php echo $this->a3hpt_selector; ?> span.<?php echo $this->a3hpt_slug; ?>').parents('<?php echo $this->a3hpt_selector; ?>:first').hide();
-			    } else {
-				  	$('h1 span.<?php echo $this->a3hpt_slug; ?>').parents('h1:first').hide();
-				  	$('h2 span.<?php echo $this->a3hpt_slug; ?>').parents('h2:first').hide();
-			   	}
-			});
-          </script><noscript><style type="text/css"> <?php echo $this->a3hpt_selector; ?> { display:none !important; }</style></noscript>
-         <!-- END Hide Page Title-->
+        { 
+
+            $_paramaters =  array(
+                'a3hpt_slug'            => $this->a3hpt_slug,
+                'a3hpt_selector'        => $this->a3hpt_selector,
+                'a3hpt_adminselector'   => $this->a3hpt_adminselector,
+            );
+
+            wp_enqueue_script( 'a3hpt_script' );
+
+            wp_localize_script( 'a3hpt_script', 'a3hpt_paramaters', $_paramaters );
+
+            ?> <!-- Hide Page Title -->
+            <noscript><style type="text/css"> <?php echo $this->a3hpt_selector; ?> { display:none !important; }</style></noscript>
+            <!-- END Hide Page Title-->
     	<?php
         }
         $this->a3hpt_afthead = true;
@@ -112,7 +115,7 @@ class Main
 
     function _default_scripts( &$scripts ){
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '';
-	    $scripts->add( 'a3hpt_script', A3_HPPT_JS_URL . '/a3-hide-post-page-title'.$suffix.'.js', array( 'jquery' ), '1.0.0', true );
+	    $scripts->add( 'a3hpt_script', A3_HPPT_JS_URL . '/a3-hide-post-page-title'.$suffix.'.js', array( 'jquery' ), '1.0.1', true );
 	}
 
     public function a3hpt_hptadmininsert()

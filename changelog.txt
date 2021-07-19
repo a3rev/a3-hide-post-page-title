@@ -1,5 +1,10 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.0.1 - 2021/07/19 =
+* This maintenance release is for compatibility with WordPress major version 5.8
+* Tweak - Test for compatibility with WordPress 5.8
+* Tweak - Add Update URI to plugin header with unique name
+
 = 1.0.0 - 2021/05/08 =
 * First Release version
 * Created a Github Public Repo
