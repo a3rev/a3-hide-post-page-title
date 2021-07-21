@@ -195,7 +195,9 @@ class Main
     public function a3hpt_hptloadscripts()
     {
         global $post;
-        $this->title = $post->post_title;
+        if( $post && $post->post_title ){
+            $this->title = $post->post_title;
+        }
         if ($this->a3hpt_ishidden())
         {
             wp_enqueue_script('jquery');
