@@ -85,7 +85,7 @@ class Main
             wp_localize_script( 'a3hpt_script', 'a3hpt_paramaters', $_paramaters );
 
             ?> <!-- Hide Page Title -->
-            <noscript><style type="text/css"> <?php echo $this->a3hpt_selector; ?> { display:none !important; }</style></noscript>
+            <style type="text/css"> <?php echo $this->a3hpt_selector; ?> { display:none !important; }</style>
             <!-- END Hide Page Title-->
     	<?php
         }
@@ -115,7 +115,7 @@ class Main
 
     function _default_scripts( &$scripts ){
 		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '';
-	    $scripts->add( 'a3hpt_script', A3_HPPT_JS_URL . '/a3-hide-post-page-title'.$suffix.'.js', array( 'jquery' ), '1.0.1', true );
+	    $scripts->add( 'a3hpt_script', A3_HPPT_JS_URL . '/a3-hide-post-page-title'.$suffix.'.js', array( 'jquery' ), A3_HPPT_VERSION, true );
 	}
 
     public function a3hpt_hptadmininsert()
@@ -211,7 +211,14 @@ class Main
         {
             return $postID;
         }
-        $old = get_post_meta($postID, $this->a3hpt_slug, true);
+
+        if( isset($_POST) && $_POST[$this->a3hpt_slug] ){
+            update_post_meta($postID, $this->a3hpt_slug, true );
+        }else{
+            delete_post_meta($postID, $this->a3hpt_slug);
+        }
+
+        /*$old = get_post_meta($postID, $this->a3hpt_slug, true);
         $new = $_POST[$this->a3hpt_slug];
         if ($old)
         {
@@ -227,7 +234,7 @@ class Main
         elseif (!is_null($new))
         {
             add_post_meta($postID, $this->a3hpt_slug, $new, true);
-        }
+        }*/
         return $postID;
     }
 

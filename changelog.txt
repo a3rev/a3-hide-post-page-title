@@ -1,5 +1,9 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.0.2 - 2021/07/31 =
+* This maintenance release has fix for Hide Title option switching off when edit and update the post.
+* Fix - Ajax save activation meta not saving on post update. 
+
 = 1.0.1 - 2021/07/19 =
 * This maintenance release is for compatibility with WordPress major version 5.8
 * Tweak - Test for compatibility with WordPress 5.8

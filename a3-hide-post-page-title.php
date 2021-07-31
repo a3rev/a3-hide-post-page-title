@@ -2,7 +2,7 @@
 /*
 Plugin Name: a3 Hide Post & Page Title
 Description: Adds 'Hide Title' option across your WordPress website. The plugin has no settings, edit any post or page you will see the 'Hide Title' checkbox option on the editor sidebar.
-Version: 1.0.1
+Version: 1.0.2
 Author: a3rev Software
 Author URI: https://a3rev.com/
 Update URI: a3-hide-post-page-title
@@ -36,7 +36,7 @@ define( 'A3_HPPT_DIR_NAME', basename(A3_HPPT_PATH));
 define( 'A3_HPPT_DIR', WP_PLUGIN_DIR . '/' . A3_HPPT_FOLDER);
 
 define( 'A3_HPPT_KEY', 'a3_hide_post_page_title' );
-define( 'A3_HPPT_VERSION', '1.0.1' );
+define( 'A3_HPPT_VERSION', '1.0.2' );
 
 if ( version_compare( PHP_VERSION, '5.6.0', '>=' ) ) {
     require __DIR__ . '/vendor/autoload.php';
