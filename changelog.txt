@@ -1,5 +1,10 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.0.3 - 2021/07/19 =
+* This maintenance release has fixes for compatibility with PHP version 8.x
+* Tweak - Test for compatibility with PHP 8.x
+* Fix - Update some defined functions without an optional parameter when followed by a required parameter. This is deprecated as of PHP 8.0.0
+
 = 1.0.2 - 2021/07/31 =
 * This maintenance release has fix for Hide Title option switching off when edit and update the post.
 * Fix - Ajax save activation meta not saving on post update. 

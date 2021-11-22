@@ -4,7 +4,7 @@ namespace A3Rev\A3HidePostPageTitle;
 class Main
 {
 
-    private $a3hpt_slug = 'a3hpt_headertitle';
+    private $a3hpt_slug = '_a3hpt_headertitle';
     private $a3hpt_selector = '.entry-title';
     private $a3hpt_adminselector = '.edit-post-visual-editor__post-title-wrapper, #titlewrap';
     private $title;
