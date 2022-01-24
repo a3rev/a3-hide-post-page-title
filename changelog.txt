@@ -1,5 +1,10 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.0.4 - 2022/01/24 =
+* This is a maintenance release for compatibility with WordPress major version 5.9 and Responsi 8.3.1 
+* Tweak - Test for compatibility with WordPress 5.9
+* Tweak - Test for compatibility with Responsi 8.3.1
+
 = 1.0.3 - 2021/11/22 =
 * This maintenance release has fixes for compatibility with PHP version 8.x
 * Tweak - Test for compatibility with PHP 8.x

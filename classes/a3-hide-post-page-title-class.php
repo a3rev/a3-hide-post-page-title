@@ -23,11 +23,11 @@ class Main
         add_action('save_post', array(
             $this,
             'a3hpt_hptsave'
-        ));
+        ), 10, 2);
         add_action('delete_post', array(
             $this,
             'a3hpt_hptdelete'
-        ));
+        ), 10, 2);
         add_action('wp_head', array(
             $this,
             'a3hpt_hptheadinsert'
@@ -205,44 +205,27 @@ class Main
     }
 
     /*Autosave metabox*/
-    public function a3hpt_hptsave($postID)
+    public function a3hpt_hptsave( $post_id, $post )
     {
-        if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !isset($_POST[$this->a3hpt_slug . '_noncename']) || !wp_verify_nonce($_POST[$this->a3hpt_slug . '_noncename'], $this->a3hpt_slug . '_dononce'))
+        if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !isset($_REQUEST[$this->a3hpt_slug . '_noncename']) || !wp_verify_nonce($_REQUEST[$this->a3hpt_slug . '_noncename'], $this->a3hpt_slug . '_dononce'))
         {
-            return $postID;
+            return $post_id;
         }
 
-        if( isset($_POST) && $_POST[$this->a3hpt_slug] ){
-            update_post_meta($postID, $this->a3hpt_slug, true );
+        if( isset($_REQUEST) && isset( $_REQUEST[$this->a3hpt_slug] ) ){
+            update_post_meta($post_id, $this->a3hpt_slug, true );
         }else{
-            delete_post_meta($postID, $this->a3hpt_slug);
+            delete_post_meta($post_id, $this->a3hpt_slug);
         }
 
-        /*$old = get_post_meta($postID, $this->a3hpt_slug, true);
-        $new = $_POST[$this->a3hpt_slug];
-        if ($old)
-        {
-            if (is_null($new))
-            {
-                delete_post_meta($postID, $this->a3hpt_slug);
-            }
-            else
-            {
-                update_post_meta($postID, $this->a3hpt_slug, $new, $old);
-            }
-        }
-        elseif (!is_null($new))
-        {
-            add_post_meta($postID, $this->a3hpt_slug, $new, true);
-        }*/
-        return $postID;
+        return $post_id;
     }
 
     /*Delete metabox */
-    public function a3hpt_hptdelete($postID)
+    public function a3hpt_hptdelete($post_id, $post )
     {
-        delete_post_meta($postID, $this->a3hpt_slug);
-        return $postID;
+        delete_post_meta($post_id, $this->a3hpt_slug);
+        return $post_id;
     }
     public function set_a3hpt_selector($a3hpt_selector)
     {
