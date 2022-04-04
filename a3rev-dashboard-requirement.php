@@ -67,7 +67,7 @@ class a3rev_Dashboard_Plugin_Requirement
 		if ( $this->is_installed() ) {
 ?>
 	<div class="error below-h2" style="display:block !important; margin-left:2px;">
-		<p><?php echo sprintf( __( 'IMPORTANT! a3 License Manager plugin has been discontinued. To continue to receive plugin updates, support and whole lot of great new features please click this link <a title="" href="%s" target="_parent">a3rev Dashboard</a> to activate it.' , 'woocommerce-categories-ultra-widget' ), $this->activate_url() ); ?></p>
+		<p><?php echo sprintf( wp_kses_post( 'IMPORTANT! a3 License Manager plugin has been discontinued. To continue to receive plugin updates, support and whole lot of great new features please click this link <a title="" href="%s" target="_parent">a3rev Dashboard</a> to activate it.' , 'woocommerce-categories-ultra-widget' ), esc_url($this->activate_url() ) ); ?></p>
 	</div>
     <?php
 
@@ -75,7 +75,7 @@ class a3rev_Dashboard_Plugin_Requirement
 		} else {		
 	?>
     	<div class="error below-h2" style="display:block !important; margin-left:2px;">
-    		<p><?php echo sprintf( __( 'IMPORTANT! a3 License Manager plugin has been discontinued. To continue to receive plugin updates, support and whole lot of great new features please click this link <a title="" href="%s" target="_parent">a3rev Dashboard</a> to install its replacement. Once installed, please activate it.' , 'woocommerce-categories-ultra-widget' ), $this->install_url() ); ?></p>
+    		<p><?php echo sprintf( wp_kses_post( 'IMPORTANT! a3 License Manager plugin has been discontinued. To continue to receive plugin updates, support and whole lot of great new features please click this link <a title="" href="%s" target="_parent">a3rev Dashboard</a> to install its replacement. Once installed, please activate it.' , 'woocommerce-categories-ultra-widget' ), esc_url($this->install_url() ) ); ?></p>
     	</div>
     <?php
 		}
@@ -86,7 +86,7 @@ class a3rev_Dashboard_Plugin_Requirement
 		$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
 
 		if ( ! current_user_can('install_plugins') )
-			wp_die( __( 'You do not have sufficient permissions to install plugins on this site.', 'woocommerce-categories-ultra-widget' ) );
+			wp_die( esc_attr__( 'You do not have sufficient permissions to install plugins on this site.', 'woocommerce-categories-ultra-widget' ) );
 
 		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 

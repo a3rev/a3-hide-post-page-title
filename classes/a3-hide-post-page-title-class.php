@@ -85,7 +85,7 @@ class Main
             wp_localize_script( 'a3hpt_script', 'a3hpt_paramaters', $_paramaters );
 
             ?> <!-- Hide Page Title -->
-            <style type="text/css"> <?php echo $this->a3hpt_selector; ?> { display:none !important; }</style>
+            <style type="text/css"> <?php echo esc_attr($this->a3hpt_selector); ?> { display:none !important; }</style>
             <!-- END Hide Page Title-->
     	<?php
         }
@@ -178,7 +178,7 @@ class Main
             $checked = ' checked="checked"';
         }
         wp_nonce_field($this->a3hpt_slug . '_dononce', $this->a3hpt_slug . '_noncename'); ?>
-		<label><input type="checkbox" name="<?php echo $this->a3hpt_slug; ?>" <?php echo $checked; ?> /> Hide the title.</label><?php
+		<label><input type="checkbox" name="<?php echo esc_attr($this->a3hpt_slug); ?>" <?php echo wp_kses_post($checked); ?> /> Hide the title.</label><?php
     }
 
     /*HPT wraptitle function*/
