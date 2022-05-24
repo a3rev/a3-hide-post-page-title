@@ -5,7 +5,7 @@ class Main
 {
 
     private $a3hpt_slug = '_a3hpt_headertitle';
-    private $a3hpt_selector = '.entry-title';
+    private $a3hpt_selector = '.entry-title, .site-page-title, .site-post-title, .wp-block-post-title';
     private $a3hpt_adminselector = '.edit-post-visual-editor__post-title-wrapper, #titlewrap';
     private $title;
     private $a3hpt_afthead = false;

@@ -1,5 +1,10 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.0.6 - 2022/05/24 =
+* This maintenance release has code tweaks for compatibility with WordPress major version 6.0
+* Tweak - Test for compatibility with WordPress 6.0
+* Tweak - Hide title when using WordPress FSE Title Block
+
 = 1.0.5 - 2022/04/04 =
 * This security hardening release follows a full PHPCS code audit with code refactoring and security hardening including additional escaping and sanitizing.
 * Security - Escape all $-variable
