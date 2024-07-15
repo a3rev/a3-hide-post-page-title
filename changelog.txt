@@ -1,5 +1,11 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.1.0 - 2024/07/15 =
+* This release has various tweaks for compatibility with WordPress 6.6. Also new plugin activation pattern.
+* Feature - Can now install and activate the plugin without having to first install the a3 Dashboard plugin. 
+* Tweak - Notification shows when plugin is installed without the Dashboard, need to install a3 Dashboard for auto updates and support.
+* Tweak - Tested for compatibility with WordPress 6.6
+
 = 1.0.6 - 2022/05/24 =
 * This maintenance release has code tweaks for compatibility with WordPress major version 6.0
 * Tweak - Test for compatibility with WordPress 6.0

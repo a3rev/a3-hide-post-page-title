@@ -2,8 +2,8 @@
 Contributors: a3rev Software team
 Tags: Gutenberg, wordpress hide title, hide title
 Requires at least: 5.2
-Tested up to: 5.7.1
-Stable tag: 1.0.6
+Tested up to: 6.6
+Stable tag: 1.1.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
