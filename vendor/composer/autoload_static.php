@@ -24,7 +24,9 @@ class ComposerStaticInit5555b164412503af4a57a9ed3dd30f7f
     );
 
     public static $classMap = array (
+        'A3Rev\\A3HidePostPageTitle\\Editor_Sidebar' => __DIR__ . '/../..' . '/classes/Editor_Sidebar.php',
         'A3Rev\\A3HidePostPageTitle\\Main' => __DIR__ . '/../..' . '/classes/a3-hide-post-page-title-class.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -16,6 +16,10 @@
     "autoload": {
         "psr-4": {
           "A3Rev\\A3HidePostPageTitle\\": [ "src/", "admin/", "upgrade", "classes" ]
-        }
+        },
+        "classmap": [
+            "classes/a3-hide-post-page-title-class.php",
+            "classes/Editor_Sidebar.php"
+        ]
     }
 }

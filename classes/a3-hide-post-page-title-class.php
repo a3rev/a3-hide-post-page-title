@@ -16,6 +16,8 @@ class Main
 
     	add_action( 'wp_default_scripts', array( $this, '_default_scripts' ), 11 );
 
+		new Editor_Sidebar();
+
         add_action('add_meta_boxes', array(
             $this,
             'a3hpt_hptaddbox'
@@ -135,42 +137,59 @@ class Main
 	    }
     }
 
+	/**
+	 * Post types that show the Hide Title meta box and block editor panel.
+	 *
+	 * @return string[]
+	 */
+	public static function supported_post_types() {
+		$posttypes = array(
+			'post',
+			'page',
+		);
+		$args = array(
+			'public'   => true,
+			'_builtin' => false,
+		);
+
+		$output   = 'names';
+		$operator = 'and';
+
+		$post_types = get_post_types( $args, $output, $operator );
+
+		foreach ( $post_types as $post_type ) {
+			$posttypes[] = $post_type;
+		}
+
+		return $posttypes;
+	}
+
     /*Function hptaddbox*/
     public function a3hpt_hptaddbox()
     {
-        $posttypes = array(
-            'post',
-            'page'
-        );
-        $args = array(
-            'public' => true,
-            '_builtin' => false,
-        );
-
-        $output = 'names';
-        $operator = 'and';
-
-        $post_types = get_post_types($args, $output, $operator);
-
-        foreach ($post_types as $post_type)
-        {
-
-            $posttypes[] = $post_type;
-
-        }
-
-        foreach ($posttypes as $posttype)
+        foreach ( self::supported_post_types() as $posttype )
         {
             add_meta_box($this->a3hpt_slug, 'Hide Page and Post Title', array(
                 $this,
                 'build_hptbox'
-            ) , $posttype, 'side');
+            ) , $posttype, 'side', 'default', array(
+				'__block_editor_compatible_meta_box' => true,
+				'__back_compat_meta_box'             => true,
+			) );
         }
     }
 
     /*Adding box in admindashboard*/
     public function build_hptbox($post)
     {
+		if ( function_exists( 'get_current_screen' ) ) {
+			$screen = get_current_screen();
+			if ( $screen && method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor() ) {
+				echo '<p>' . esc_html__( 'Hide title settings are in the document sidebar.', 'a3-hide-post-page-title' ) . '</p>';
+				return;
+			}
+		}
+
         $value = get_post_meta($post->ID, $this->a3hpt_slug, true);
         $checked = '';
         if ((bool)$value)
