@@ -1,5 +1,10 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.2.0 - 2026/04/09 =
+* This maintenance release has compatibility with WordPress 7.0
+* Tweak - Tested for compatibility with WordPress 7.0
+* Tweak - Update meta box for compatibility with WordPress 7.0 Block Editor
+
 = 1.1.0 - 2024/07/15 =
 * This release has various tweaks for compatibility with WordPress 6.6. Also new plugin activation pattern.
 * Feature - Can now install and activate the plugin without having to first install the a3 Dashboard plugin. 
