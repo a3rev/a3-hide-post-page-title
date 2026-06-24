@@ -169,7 +169,7 @@ class Main
     {
         foreach ( self::supported_post_types() as $posttype )
         {
-            add_meta_box($this->a3hpt_slug, 'Hide Page and Post Title', array(
+            add_meta_box('a3-hide-post-page-title', 'Hide Page and Post Title', array(
                 $this,
                 'build_hptbox'
             ) , $posttype, 'side', 'default', array(
@@ -226,6 +226,11 @@ class Main
     /*Autosave metabox*/
     public function a3hpt_hptsave( $post_id, $post )
     {
+        // Block Editor saves via REST API; meta is managed by the sidebar panel.
+        if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+            return $post_id;
+        }
+
         if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !isset($_REQUEST[$this->a3hpt_slug . '_noncename']) || !wp_verify_nonce($_REQUEST[$this->a3hpt_slug . '_noncename'], $this->a3hpt_slug . '_dononce'))
         {
             return $post_id;
