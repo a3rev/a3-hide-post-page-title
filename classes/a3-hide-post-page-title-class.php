@@ -236,6 +236,10 @@ class Main
             return $post_id;
         }
 
+        if ( ! current_user_can( 'edit_post', $post_id ) ) {
+            return $post_id;
+        }
+
         if( isset($_REQUEST) && isset( $_REQUEST[$this->a3hpt_slug] ) ){
             update_post_meta($post_id, $this->a3hpt_slug, true );
         }else{

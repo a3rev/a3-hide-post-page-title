@@ -1,5 +1,11 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.2.1 - 2026/06/24 =
+* This security hardening release includes output escaping improvements and authorization hardening in the post meta save handler.
+* Security - Harden output escaping for remotely fetched content displayed in the admin area
+* Security - Strengthen authorization checks on post meta save to follow WordPress security best practices
+* Fix - Block Editor meta box checkbox reset when third-party meta boxes are active
+
 = 1.2.0 - 2026/04/09 =
 * This maintenance release has compatibility with WordPress 7.0
 * Tweak - Tested for compatibility with WordPress 7.0
