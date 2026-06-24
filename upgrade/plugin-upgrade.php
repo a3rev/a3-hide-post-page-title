@@ -84,7 +84,7 @@ class a3_Hppt_Upgrade
 		$body = wp_remote_retrieve_body( $request );
 
 		if ( ! empty( $body ) ) {
-			echo wpautop( $body );
+			echo wpautop( esc_html( $body ) );
 			exit;
 		}
 
