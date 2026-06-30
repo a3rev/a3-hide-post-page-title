@@ -1,6 +1,6 @@
 {
     "name": "a3rev/a3-hide-post-page-title",
-    "description": "This plugin has no settings. Install and activate, clear your cache and you will see that your facebook iframes will resize to fit the container width in any device.",
+    "description": "Adds a Hide Title checkbox option to the WordPress post and page editor for posts, pages and custom post types.",
     "authors": [
         {
             "name": "a3rev Software",

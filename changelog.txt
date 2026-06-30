@@ -1,5 +1,21 @@
 *** a3 Hide Post & Page Title Changelog ***
 
+= 1.2.2 - 2026/06/30 =
+* This security hygiene release removes dead code and applies further hardening improvements.
+* Security - Add capability check to dashboard notice dismiss AJAX handler
+* Security - Remove obsolete WP 3.7 compatibility shim containing unserialize() call
+* Security - Remove dead plugins_api() call in dashboard installer
+* Fix - Guard display_changelog() against undefined-index notice on missing request parameter
+* Fix - Apply wp_unslash() before nonce verification in meta save handler
+* Fix - Apply sanitize_text_field()/wp_unslash() to request vars in admin installer
+* Tweak - Change add_action to add_filter for the_title hook
+* Tweak - Remove dead private method a3hpt_isadminhidden()
+* Tweak - Remove unused public method set_a3hpt_selector()
+* Tweak - Remove no-op SCRIPT_DEBUG suffix ternary
+* Tweak - Guard version option update to skip write when value is unchanged
+* Tweak - Add missing text domain to i18n calls
+* Tweak - Fix composer.json description (was copy-pasted from an unrelated plugin)
+
 = 1.2.1 - 2026/06/24 =
 * This security hardening release includes output escaping improvements and authorization hardening in the post meta save handler.
 * Security - Harden output escaping for remotely fetched content displayed in the admin area

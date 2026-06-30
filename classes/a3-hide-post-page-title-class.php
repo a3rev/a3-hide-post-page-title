@@ -38,7 +38,7 @@ class Main
             $this,
             'a3hpt_hptadmininsert'
         ));
-        add_action('the_title', array(
+        add_filter('the_title', array(
             $this,
             'a3hpt_hptwraptitle'
         ));
@@ -94,30 +94,8 @@ class Main
         $this->a3hpt_afthead = true;
     }
 
-    private function a3hpt_isadminhidden()
-    {
-        global $pagenow;
-		if (( $pagenow == 'post.php' ) || ( (get_post_type() == 'post') || (get_post_type() == 'page') ) ) {
-
-			global $post;
-	        $toggle = get_post_meta($post->ID, $this->a3hpt_slug, true);
-            if ((bool)$toggle)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-	      
-		}else{
-			return false;
-		}
-    }
-
     function _default_scripts( &$scripts ){
-		$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '' : '';
-	    $scripts->add( 'a3hpt_script', A3_HPPT_JS_URL . '/a3-hide-post-page-title'.$suffix.'.js', array( 'jquery' ), A3_HPPT_VERSION, true );
+	    $scripts->add( 'a3hpt_script', A3_HPPT_JS_URL . '/a3-hide-post-page-title.js', array( 'jquery' ), A3_HPPT_VERSION, true );
 	}
 
     public function a3hpt_hptadmininsert()
@@ -169,7 +147,7 @@ class Main
     {
         foreach ( self::supported_post_types() as $posttype )
         {
-            add_meta_box('a3-hide-post-page-title', 'Hide Page and Post Title', array(
+            add_meta_box('a3-hide-post-page-title', __( 'Hide Page and Post Title', 'a3-hide-post-page-title' ), array(
                 $this,
                 'build_hptbox'
             ) , $posttype, 'side', 'default', array(
@@ -197,7 +175,7 @@ class Main
             $checked = ' checked="checked"';
         }
         wp_nonce_field($this->a3hpt_slug . '_dononce', $this->a3hpt_slug . '_noncename'); ?>
-		<label><input type="checkbox" name="<?php echo esc_attr($this->a3hpt_slug); ?>" <?php echo wp_kses_post($checked); ?> /> Hide the title.</label><?php
+		<label><input type="checkbox" name="<?php echo esc_attr($this->a3hpt_slug); ?>" <?php echo wp_kses_post($checked); ?> /> <?php esc_html_e( 'Hide the title.', 'a3-hide-post-page-title' ); ?></label><?php
     }
 
     /*HPT wraptitle function*/
@@ -231,7 +209,7 @@ class Main
             return $post_id;
         }
 
-        if ((defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) || !isset($_REQUEST[$this->a3hpt_slug . '_noncename']) || !wp_verify_nonce($_REQUEST[$this->a3hpt_slug . '_noncename'], $this->a3hpt_slug . '_dononce'))
+        if ( ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) || ! isset( $_REQUEST[ $this->a3hpt_slug . '_noncename' ] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST[ $this->a3hpt_slug . '_noncename' ] ) ), $this->a3hpt_slug . '_dononce' ) )
         {
             return $post_id;
         }
@@ -254,13 +232,6 @@ class Main
     {
         delete_post_meta($post_id, $this->a3hpt_slug);
         return $post_id;
-    }
-    public function set_a3hpt_selector($a3hpt_selector)
-    {
-        if (isset($a3hpt_selector) && is_string($a3hpt_selector))
-        {
-            $this->a3hpt_selector = $a3hpt_selector;
-        }
     }
 
 }
