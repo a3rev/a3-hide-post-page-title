@@ -71,7 +71,8 @@ class a3_Hppt_Upgrade
 
 	//Displays current version details on Plugin's page
 	public function display_changelog() {
-		if ( $_REQUEST["plugin"] != $this->plugin_key ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only comparison inside a WP admin-only hook; no state change.
+		if ( ! isset( $_REQUEST['plugin'] ) || $_REQUEST['plugin'] !== $this->plugin_key ) {
 			return;
 		}
 
@@ -84,7 +85,7 @@ class a3_Hppt_Upgrade
 		$body = wp_remote_retrieve_body( $request );
 
 		if ( ! empty( $body ) ) {
-			echo wpautop( esc_html( $body ) );
+			echo wp_kses_post( wpautop( esc_html( $body ) ) );
 			exit;
 		}
 
@@ -93,17 +94,9 @@ class a3_Hppt_Upgrade
 
 	public function make_compatibility( $info, $action, $args ) {
 		global $wp_version;
-		$cur_wp_version = preg_replace('/-.*$/', '', $wp_version);
 		if ( $action == 'plugin_information' ) {
-			if ( version_compare( $wp_version, '3.7', '<=' ) ) {
-				if ( is_object( $args ) && isset( $args->slug ) && $args->slug == $this->plugin_key ) {
-					$info->tested = $wp_version;
-				}
-			} elseif ( version_compare( $wp_version, '3.7', '>' ) && is_array( $args ) && isset( $args['body']['request'] ) ) {
-				$request = unserialize( $args['body']['request'] );
-				if ( $request->slug == $this->plugin_key ) {
-					$info->tested = $wp_version;
-				}
+			if ( is_object( $args ) && isset( $args->slug ) && $args->slug == $this->plugin_key ) {
+				$info->tested = $wp_version;
 			}
 		}
 		return $info;
